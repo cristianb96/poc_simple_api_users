@@ -2,6 +2,10 @@ import uvicorn
 from fastapi import FastAPI
 
 from app.api.routes import auth_router, users_router
+from app.database.database import engine
+from app.models.user import UserDB
+
+UserDB.metadata.create_all(bind=engine)
 
 app = FastAPI(
     title="API de Usuarios",
